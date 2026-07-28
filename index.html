@@ -24,9 +24,10 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--txt-d); min-height: 100vh; }
 
-  .header { padding: 22px 32px 18px; background: var(--header); border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 16px; }
-  .header h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 700; color: var(--txt-d); letter-spacing: -0.5px; }
-  .header p  { font-size: 13px; color: var(--mute-d); }
+  .header { padding: 22px 32px 18px; background: var(--header); border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 16px; justify-content: space-between; }
+  .header-name { font-size: 13px; color: var(--mute-d); }
+  .header h1 { font-size: 28px; font-weight: 800; color: var(--txt-d); letter-spacing: -0.5px; }
+  .header p  { font-size: 12px; color: var(--mute-d); line-height: 1.6; max-width: 700px; }
 
   .layout { display: grid; grid-template-columns: 360px 1fr; min-height: calc(100vh - 72px); }
 
@@ -51,6 +52,10 @@
   .btn-teal:hover { background: #186040; }
   .btn-ghost  { background: rgba(0,0,0,0.05); color: var(--mute-d); font-weight: 500; }
   .btn-ghost:hover { background: rgba(0,0,0,0.1); }
+  .btn-view   { background: rgba(85,53,168,0.1); color: var(--purple); font-weight: 600; }
+  .btn-view:hover { background: rgba(85,53,168,0.18); }
+  .btn-clear  { background: rgba(198,40,40,0.08); color: #B71C1C; font-weight: 600; }
+  .btn-clear:hover { background: rgba(198,40,40,0.15); }
 
   .element-row { display: flex; flex-direction: column; gap: 6px; padding-bottom: 20px; margin-bottom: 4px; border-bottom: 1px solid var(--border); }
   .element-row:last-child { border-bottom: none; padding-bottom: 0; }
@@ -87,42 +92,42 @@
   .btn-del:hover { color: var(--play); }
   .empty-state { font-size: 12px; color: var(--mute); text-align: center; padding: 12px 0; font-style: italic; }
 
-  .canvas-wrap { padding: 32px; display: flex; flex-direction: column; gap: 32px; overflow-y: auto; }
+  .canvas-wrap { padding: 22px 32px 32px; display: flex; flex-direction: column; gap: 20px; overflow-y: auto; }
   .section-head { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 3px solid var(--txt-d); padding-bottom: 10px; }
-  .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: var(--txt-d); }
+  .section-title { font-size: 26px; font-weight: 800; color: var(--txt-d); letter-spacing: -0.3px; }
 
-  .element-key { display: flex; gap: 20px; flex-wrap: wrap; }
+  .element-key { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
   .key-item    { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
   .key-dot     { width: 13px; height: 13px; border-radius: 50%; }
 
-  .spectrum-outer { background: var(--card); border-radius: 14px; border: 1px solid var(--border); padding: 0; overflow: hidden; }
+  .spectrum-outer { background: var(--bg); border-radius: 14px; border: 1px solid var(--border); padding: 10px; overflow: hidden; }
   .spectrum-empty { text-align: center; padding: 48px 24px; color: var(--mute-d); font-size: 14px; font-style: italic; }
-  .spectrum-with-axis { display: flex; }
+  .spectrum-with-axis { display: flex; gap: 10px; }
   .spectrum-v-axis {
     width: 36px; flex-shrink: 0; display: flex; flex-direction: column;
     align-items: center; padding: 16px 0;
     border-right: 1px solid var(--border); background: rgba(0,0,0,0.015);
+    border-radius: 8px;
   }
-  .v-axis-label { font-size: 8px; font-weight: 800; letter-spacing: 2.5px; color: var(--mute); text-transform: uppercase; writing-mode: vertical-lr; text-orientation: mixed; }
+  .v-axis-label { font-size: 12px; font-weight: 400; letter-spacing: 2.5px; color: var(--mute); text-transform: uppercase; writing-mode: vertical-lr; text-orientation: mixed; }
   .v-axis-label.bottom { transform: rotate(180deg); }
   .v-axis-line { flex: 1; width: 2px; margin: 10px 0; background: linear-gradient(to bottom, var(--mute) 0%, var(--purple) 100%); border-radius: 2px; opacity: 0.45; }
-  .spectrum-grid { display: flex; flex-direction: column; flex: 1; }
+  .spectrum-grid { display: flex; flex-direction: column; flex: 1; gap: 8px; }
 
-  .game-col { display: grid; grid-template-columns: 40% 60%; border-bottom: 1px solid rgba(0,0,0,0.07); cursor: pointer; transition: background 0.15s; animation: fadeIn 0.25s ease; position: relative; }
-  .game-col:last-child { border-bottom: none; }
-  .game-col:hover { background: rgba(0,0,0,0.02); }
-  .game-col.sel   { background: rgba(85,53,168,0.06); }
+  .game-col { display: grid; grid-template-columns: 40% 60%; border: 1px solid var(--border); border-radius: 10px; cursor: pointer; transition: background 0.15s, border-color 0.15s; animation: fadeIn 0.25s ease; position: relative; background: var(--card); }
+  .game-col:hover { background: #F5F2DC; border-color: rgba(0,0,0,0.16); }
+  .game-col.sel   { background: #F4F1FD; border-color: var(--purple); border-width: 2px; box-shadow: 0 2px 12px rgba(85,53,168,0.18); }
   @keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
 
   .col-left { display: flex; flex-direction: column; align-items: center; padding: 10px 10px 8px; border-right: 1px solid rgba(0,0,0,0.07); }
   .col-left svg { width: 60%; height: auto; }
-  .col-name  { font-size: 20px; font-weight: 800; color: var(--txt-d); text-align: center; font-family: 'Playfair Display', Georgia, serif; margin-bottom: 4px; line-height: 1.2; }
+  .col-name  { font-size: 20px; font-weight: 800; color: var(--txt-d); text-align: center; margin-bottom: 4px; line-height: 1.2; letter-spacing: -0.3px; }
   .col-sub   { font-size: 16px; color: var(--mute-d); text-align: center; font-style: italic; margin-bottom: 10px; line-height: 1.4; }
-  .col-score { font-size: 20px; font-weight: 800; font-family: 'Playfair Display', Georgia, serif; margin-top: 0; line-height: 1.2; }
+  .col-score { font-size: 20px; font-weight: 800; margin-top: 0; line-height: 1.2; }
   .col-right { padding: 10px 20px; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
   .col-rat-row { display: flex; gap: 10px; align-items: flex-start; }
   .col-rat-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
-  .col-rat-text { font-size: 18px; color: var(--mute-d); font-style: italic; line-height: 1.5; }
+  .col-rat-text { font-size: 13px; color: var(--mute-d); font-style: italic; line-height: 1.5; }
 
   .col-zoom-btn {
     position: absolute; top: 8px; right: 8px;
@@ -142,7 +147,7 @@
 
   .comp-wrap { display: flex; flex-direction: column; gap: 0; }
   .comp-section-head { border-bottom: 4px solid var(--txt-d); padding-bottom: 12px; margin-bottom: 0; }
-  .comp-section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 30px; font-weight: 700; color: var(--txt-d); }
+  .comp-section-title { font-size: 30px; font-weight: 800; color: var(--txt-d); letter-spacing: -0.4px; }
   .comp-section-sub   { font-size: 13px; color: var(--mute-d); margin-top: 5px; font-style: italic; }
   .comp-table { background: var(--card); border-radius: 0 0 14px 14px; border: 1px solid var(--border); border-top: none; overflow: hidden; }
   .comp-table table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -158,7 +163,7 @@
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100; display: flex; align-items: center; justify-content: center; animation: fadeIn 0.2s ease; }
   .modal { background: var(--card); border-radius: 14px; width: 96%; max-width: 1200px; height: 88vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
   .modal-head { padding: 16px 24px; border-bottom: 2px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--header); flex-shrink: 0; }
-  .modal-head h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; }
+  .modal-head h2 { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; }
   .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--mute-d); line-height: 1; }
 
   .sub-layout { display: grid; grid-template-columns: 240px 1fr; flex: 1; overflow: hidden; }
@@ -177,12 +182,12 @@
   .sv-spectrum-grid  { display: flex; gap: 0; align-items: stretch; min-width: 400px; }
   .sv-game-col { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 14px 10px 12px; border-right: 1px solid rgba(0,0,0,0.07); border-radius: 8px; position: relative; }
   .sv-game-col:last-child { border-right: none; }
-  .sv-col-name { font-size: 18px; font-weight: 800; color: var(--txt-d); text-align: center; font-family: 'Playfair Display', Georgia, serif; margin-bottom: 4px; line-height: 1.2; }
+  .sv-col-name { font-size: 18px; font-weight: 800; color: var(--txt-d); text-align: center; margin-bottom: 4px; line-height: 1.2; letter-spacing: -0.3px; }
   .sv-col-sub  { font-size: 9px; color: var(--mute-d); text-align: center; font-style: italic; margin-bottom: 10px; }
   .sv-col-score { font-size: 13px; font-weight: 800; margin-top: 6px; }
 
   .sv-comp-head { border-bottom: 3px solid var(--txt-d); padding-bottom: 10px; }
-  .sv-comp-title { font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 700; color: var(--txt-d); }
+  .sv-comp-title { font-size: 24px; font-weight: 800; color: var(--txt-d); letter-spacing: -0.3px; }
   .sv-comp-sub   { font-size: 12px; color: var(--mute-d); margin-top: 4px; font-style: italic; }
   .sv-comp-table { background: var(--card); border-radius: 0 0 14px 14px; border: 1px solid var(--border); border-top: none; overflow: hidden; }
   .sv-comp-table table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -193,7 +198,7 @@
 
   .zoom-modal { background: var(--card); border-radius: 14px; width: 90%; max-width: 540px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.3); }
   .zoom-modal-head { padding: 20px 24px 14px; border-bottom: 2px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--header); flex-shrink: 0; }
-  .zoom-modal-title { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; }
+  .zoom-modal-title { font-size: 26px; font-weight: 800; letter-spacing: -0.3px; }
   .zoom-modal-body { padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
   .zoom-rationale-row { display: flex; gap: 10px; align-items: flex-start; }
   .zoom-rat-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
@@ -201,6 +206,37 @@
   .zoom-rat-text { font-size: 13px; color: var(--mute-d); line-height: 1.55; font-style: italic; }
   .zoom-score-row { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
   .zoom-score-bar { height: 8px; border-radius: 4px; min-width: 4px; transition: width 0.3s; }
+
+  .instructions-bar {
+    display: flex; flex-direction: column; gap: 3px;
+    font-size: 12px; color: var(--mute); line-height: 1.6;
+  }
+  .instructions-bar strong { color: var(--mute-d); font-weight: 700; }
+  .instructions-bar em { font-style: normal; font-weight: 700; color: var(--mute-d); }
+
+  /* ELEMENT INFO MODAL */
+  .el-modal { background: var(--card); border-radius: 14px; width: 92%; max-width: 680px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.28); }
+  .el-modal-head { padding: 22px 28px 16px; display: flex; align-items: flex-start; justify-content: space-between; flex-shrink: 0; }
+  .el-modal-role { font-size: 9px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  .el-modal-title { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
+  .el-modal-body { padding: 0 28px 28px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
+  .el-definition { font-size: 14px; color: var(--mute-d); line-height: 1.7; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  .el-section-label { font-size: 9px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--mute); margin-bottom: 10px; }
+  .el-lenses { display: flex; flex-direction: column; gap: 10px; }
+  .el-lens { display: flex; gap: 14px; align-items: flex-start; padding: 12px 14px; background: rgba(0,0,0,0.03); border-radius: 8px; border-left: 3px solid; }
+  .el-lens-name { font-size: 11px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 3px; }
+  .el-lens-desc { font-size: 12px; color: var(--mute-d); line-height: 1.6; }
+  .el-ask { background: rgba(0,0,0,0.03); border-radius: 8px; padding: 14px 16px; }
+  .el-ask-q { font-size: 12px; color: var(--mute-d); line-height: 1.7; font-style: italic; padding-left: 12px; border-left: 2px solid rgba(0,0,0,0.12); margin-bottom: 6px; }
+  .el-ask-q:last-child { margin-bottom: 0; }
+  .key-item { cursor: pointer; border-radius: 6px; padding: 3px 7px; margin: -3px -7px; transition: background 0.15s, transform 0.12s; }
+  .key-item:hover { background: rgba(0,0,0,0.07); transform: translateX(3px); }
+
+  .canvas-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 14px; border-top: 1px solid var(--border);
+    font-size: 15px; color: var(--mute); letter-spacing: 0.2px;
+  }
 
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -211,7 +247,10 @@
 
 <div class="header">
   <h1>Level Elements Mapping Framework</h1>
-  <p>Level Design &amp; Environmental Storytelling — Studio Exercise</p>
+  <div style="display:flex;align-items:center;gap:16px;min-width:0;">
+    <span class="header-name" id="headerName"></span>
+    <img src="nid_logo.svg" alt="NID" style="height:36px;width:auto;opacity:0.75;flex-shrink:0;">
+  </div>
 </div>
 
 <div class="layout">
@@ -233,7 +272,7 @@
       <div id="sliders"></div>
     </div>
     <div style="flex:1">
-      <div class="panel-label">Games on the spectrum</div>
+      <div class="panel-label">Games Added</div>
       <div class="game-list" id="gameList">
         <div class="empty-state">No games yet — add one above</div>
       </div>
@@ -241,24 +280,27 @@
     <div style="display:flex;flex-direction:column;gap:8px">
       <button class="btn btn-teal" onclick="submitWork()">Submit</button>
       <div style="display:flex;gap:8px">
-        <button class="btn btn-ghost" style="flex:1" onclick="openSubmissions()">View Submissions</button>
-        <button class="btn btn-ghost" onclick="clearAll()">Clear</button>
+        <button class="btn btn-view" style="flex:1" onclick="openSubmissions()">View Submissions</button>
+        <button class="btn btn-clear" onclick="clearAll()">Clear</button>
       </div>
     </div>
   </div>
 
   <div class="canvas-wrap">
-    <div>
-      <div class="section-head">
-        <div class="section-title">The Spectrum</div>
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div class="instructions-bar">
+        <span><strong>1.</strong> Enter your name in the panel on the left.</span>
+        <span><strong>2.</strong> Type a game title and click <em>Add</em>.</span>
+        <span><strong>3.</strong> Rate each of the five elements (0–5) and write your analysis.</span>
+        <span><strong>4.</strong> Repeat for each game, then hit <em>Submit</em>.</span>
       </div>
-    </div>
-    <div class="element-key">
-      <div class="key-item"><div class="key-dot" style="background:var(--space)"></div><span style="color:var(--space)">SPACE</span></div>
-      <div class="key-item"><div class="key-dot" style="background:var(--exp)"></div><span style="color:var(--exp)">EXPERIENCE</span></div>
-      <div class="key-item"><div class="key-dot" style="background:var(--play)"></div><span style="color:var(--play)">PLAY</span></div>
-      <div class="key-item"><div class="key-dot" style="background:var(--world)"></div><span style="color:var(--world)">WORLD</span></div>
-      <div class="key-item"><div class="key-dot" style="background:var(--narr)"></div><span style="color:var(--narr)">NARRATIVE</span></div>
+      <div class="element-key">
+        <div class="key-item" onclick="openElementInfo('space')" title="Open Space lens"><div class="key-dot" style="background:var(--space)"></div><span style="color:var(--space)">SPACE</span></div>
+        <div class="key-item" onclick="openElementInfo('exp')" title="Open Experience lens"><div class="key-dot" style="background:var(--exp)"></div><span style="color:var(--exp)">EXPERIENCE</span></div>
+        <div class="key-item" onclick="openElementInfo('play')" title="Open Play lens"><div class="key-dot" style="background:var(--play)"></div><span style="color:var(--play)">PLAY</span></div>
+        <div class="key-item" onclick="openElementInfo('world')" title="Open World lens"><div class="key-dot" style="background:var(--world)"></div><span style="color:var(--world)">WORLD</span></div>
+        <div class="key-item" onclick="openElementInfo('narr')" title="Open Narrative lens"><div class="key-dot" style="background:var(--narr)"></div><span style="color:var(--narr)">NARRATIVE</span></div>
+      </div>
     </div>
     <div class="spectrum-outer" id="spectrumWrap">
       <div class="spectrum-empty" id="emptyMsg">Add games on the left to begin mapping the spectrum.</div>
@@ -295,6 +337,24 @@
         </table>
       </div>
     </div>
+    <div class="canvas-footer">
+      <span>Developed for Level Design course at NID Bengaluru</span>
+      <span>© Swapnesh Samaiya</span>
+    </div>
+  </div>
+</div>
+
+<!-- ELEMENT INFO MODAL -->
+<div class="modal-overlay" id="elModal" style="display:none" onclick="if(event.target===this)closeElementInfo()">
+  <div class="el-modal">
+    <div class="el-modal-head" id="elModalHead">
+      <div>
+        <div class="el-modal-role" id="elModalRole"></div>
+        <div class="el-modal-title" id="elModalTitle"></div>
+      </div>
+      <button class="modal-close" onclick="closeElementInfo()">×</button>
+    </div>
+    <div class="el-modal-body" id="elModalBody"></div>
   </div>
 </div>
 
@@ -371,7 +431,10 @@ function loadSession() {
     const raw = localStorage.getItem(SESSION_KEY);
     if (!raw) return false;
     const s = JSON.parse(raw);
-    if (s.studentName) document.getElementById('studentName').value = s.studentName;
+    if (s.studentName) {
+      document.getElementById('studentName').value = s.studentName;
+      document.getElementById('headerName').textContent = s.studentName;
+    }
     if (s.games && s.games.length) {
       games = s.games;
       if (s.selected !== null && s.selected < games.length) {
@@ -380,7 +443,7 @@ function loadSession() {
         draftRationale = {...(games[selected].rationale || {})};
         setInputs(draft, draftRationale);
         document.getElementById('nameInput').value = games[selected].name;
-        document.getElementById('addBtn').textContent = 'Done';
+        document.getElementById('addBtn').textContent = 'Add';
       }
       return true;
     }
@@ -444,7 +507,11 @@ function init() {
   buildSliders();
 
   document.getElementById('nameInput').addEventListener('keydown', e => { if (e.key === 'Enter') addGame(); });
-  document.getElementById('studentName').addEventListener('input', saveSession);
+  document.getElementById('studentName').addEventListener('input', function() {
+    saveSession();
+    const n = this.value.trim();
+    document.getElementById('headerName').textContent = n || '';
+  });
 
   // Load saved session; fall back to example games on first visit
   if (!loadSession()) {
@@ -598,7 +665,7 @@ function selectGame(i) {
     draftRationale = {...(games[i].rationale||{})};
     setInputs(draft, draftRationale);
     document.getElementById('nameInput').value = games[i].name;
-    document.getElementById('addBtn').textContent = 'Done';
+    document.getElementById('addBtn').textContent = 'Add';
   }
   renderAll();
   saveSession();
@@ -814,7 +881,7 @@ function showSubmission(idx) {
   viewer.innerHTML = `
     <div>
       <div style="border-bottom:3px solid var(--txt-d);padding-bottom:10px;margin-bottom:16px;display:flex;align-items:baseline;justify-content:space-between">
-        <span style="font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:700">The Spectrum</span>
+        <span style="font-weight:800;letter-spacing:-0.3px;font-size:24px;font-weight:700">The Spectrum</span>
         <span style="font-size:11px;color:var(--mute-d);font-style:italic">${s.studentName}</span>
       </div>
       <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px">${elementKeyHTML}</div>
@@ -948,12 +1015,162 @@ function renderTable() {
       const w = Math.round(v/5*80);
       return `<td><div class="td-bar"><div class="td-mini-bar" style="width:${w}px;background:${el.color}"></div><div class="td-val" style="color:${el.color}">${v}</div></div></td>`;
     }).join('');
-    return `<tr style="${isSel?'background:rgba(85,53,168,0.07)':''}">
+    return `<tr style="cursor:pointer;transition:background 0.15s;${isSel?'background:#F4F1FD;outline:2px solid var(--purple);outline-offset:-1px;':''}" onclick="selectGame(${g.idx})" onmouseenter="if(!${isSel})this.style.background='rgba(0,0,0,0.03)'" onmouseleave="if(!${isSel})this.style.background=''">
       <td class="td-game-name">${g.name}</td>${cells}
       <td><span class="td-total" style="color:${scoreColor}">${total}</span><span style="font-size:11px;color:var(--mute)">/25</span></td>
     </tr>`;
   }).join('');
 }
+
+// ── ELEMENT INFO ──────────────────────────────────────────────
+const ELEMENT_INFO = {
+  space: {
+    color: '#1565C0',
+    role: 'Constant 1 — Present in every level',
+    title: 'SPACE',
+    definition: 'Space is the irreducible minimum of any level — the authored, bounded environment through which the player moves. Spatial design is felt by the body before it is understood by the mind. Every level is first a spatial argument: where things are, how they connect, and what they invite.',
+    lenses: [
+      { name: 'Zone', desc: 'A distinct spatial region with its own function and character — entry zone, exploration body, climactic space, exit. Every level is a sequence of zones, even if the transitions are invisible.' },
+      { name: 'Threshold', desc: 'The designed boundary between zones. Doorways, light changes, sound shifts, terrain changes. Thresholds tell the player the world has changed — the best thresholds do this without words.' },
+      { name: 'Node', desc: 'A decision point in space — a junction where the player chooses direction. The most powerful nodes give each option a distinct visual character so the choice is spatial, not arbitrary.' },
+      { name: 'Landmark', desc: 'A unique, visible anchor in the space. Landmarks allow the player to orient themselves without a map. Dark Souls is navigable without a map because every area has a landmark readable from multiple zones.' },
+      { name: 'Sightline', desc: 'A designed line of vision — what the player sees from where, and when. Sightlines create anticipation, establish scale, and frame the dramatic peak of a level before the player arrives there.' },
+      { name: 'Affordance', desc: 'What a space invites — the implicit instruction embedded in the geometry. A ledge invites climbing. A narrow passage invites caution. Effective spatial design teaches without text.' },
+      { name: 'Prospect & Refuge', desc: 'Appleton\'s theory: players instinctively seek high viewpoints (prospect) and sheltered alcoves (refuge). The tension between exposure and shelter is a primal driver of spatial experience in levels.' },
+      { name: 'Spatial Grammar', desc: 'The implicit rules a space teaches without instruction — what is traversable, what can be climbed, what doors open. Breaking spatial grammar intentionally produces dread or revelation; breaking it accidentally produces frustration.' },
+    ],
+    questions: [
+      'Where does the player arrive, and what is the first spatial argument made?',
+      'What is the landmark — can the player orient themselves at any moment without a map?',
+      'Where are the nodes? Does each option at a node have a distinct spatial character?',
+      'What does the space invite — what does its geometry promise the player can do?',
+      'Where does prospect-and-refuge tension operate in this level?',
+    ]
+  },
+  exp: {
+    color: '#CC8800',
+    role: 'Constant 2 — Present in every level',
+    title: 'EXPERIENCE',
+    definition: 'Experience is the arc the player travels emotionally. Every level has a shape: a series of emotional beats that rise and fall, building toward a peak. The beat chart is the primary design instrument for experience — if you cannot chart your level\'s emotional arc, you have not designed it yet.',
+    lenses: [
+      { name: 'Beat', desc: 'The smallest unit of emotional shift — the moment something changes in the player\'s relationship to the space. A beat can be a door opening, a vista appearing, a sound stopping. A level is a composed sequence of beats.' },
+      { name: 'Pacing', desc: 'The rhythm of tension and release across the level. Pacing is not about speed — it\'s about the ratio and timing of high-intensity to low-intensity beats. Unrelenting intensity is as deadening as unrelenting calm.' },
+      { name: 'The Valley', desc: 'The deliberate de-escalation immediately before each major peak. The valley is required — without it the climax has no contrast to make it feel like a climax. The deepest valley should precede the highest peak.' },
+      { name: 'Flow State', desc: 'Csikszentmihalyi\'s engagement corridor: the player is in flow when challenge and skill are balanced. Too easy = boredom. Too hard = anxiety. The challenge curve is the spatial instrument for managing this balance.' },
+      { name: 'The Promised Peak', desc: 'The beat chart must build expectation of the climax early enough that the player invests in reaching it. The promise is made spatially: a distant structure, a sound from below, a partially visible vista.' },
+      { name: 'Beat Chart', desc: 'A horizontal timeline marking every emotional shift in a level, labelled by type: wonder / tension / climax / relief / dread / discovery. If two adjacent beats have the same label, one of them is not doing design work.' },
+      { name: 'Experience Map', desc: 'Two parallel tracks — ACTIONS and EMOTIONS — mapped simultaneously across the level. The gap between the tracks (player action vs. emotional state) is where the design either succeeds or fails.' },
+    ],
+    questions: [
+      'What is the emotional shape of this level — can you draw it as a line graph?',
+      'Where is the peak? Is there a valley immediately before it?',
+      'When does the player first receive a promise of the climax?',
+      'Is there at least one moment of deliberate de-escalation?',
+      'Map two adjacent beats — do they contrast, or repeat the same emotional type?',
+    ]
+  },
+  play: {
+    color: '#C62828',
+    role: 'Constant 3 — Present in every level',
+    title: 'PLAY',
+    definition: 'Play is the interactive layer — what the player actually does in the space. The central tension of level design lives here: total freedom destroys experiential shape; total linearity destroys agency. Managing this tension is the fundamental challenge every level designer must answer.',
+    lenses: [
+      { name: 'Agency', desc: 'The player\'s sense of meaningful choice. Agency is an information design problem: the most satisfying choices are those where both options feel plausible based on what the player can read from the space. A choice with no spatial information is not a choice, it\'s a coin flip.' },
+      { name: 'Gate & Key', desc: 'The fundamental structure of level progression: an obstacle (gate) and the capability or object required to pass it (key). The key can be spatial, mechanical, or narrative. The most elegant gates make the key\'s function visible in the gate\'s design.' },
+      { name: 'Level Type', desc: 'The spatial topology of choice: Linear (one path, maximally shaped experience), Hub (central node with radiating paths, player-ordered), Open World (player-authored sequence). Each is a philosophical position on the player relationship, not a technical decision.' },
+      { name: 'Choice Node', desc: 'The spatial arrangement of a decision point — what the player sees, what each path promises, and what each path delivers. The promise-and-delivery relationship is the unit of trust between level and player.' },
+      { name: 'Scripted vs. Emergent', desc: 'Scripted moments are authored events triggered by player position or action. Emergent moments arise from the player\'s own movement through a designed possibility space. Great levels balance both: scripted moments feel inevitable; emergent moments feel discovered.' },
+      { name: 'Spatial Promise', desc: 'Every spatial decision makes an implicit contract with the player. A dark corridor implies threat. A high platform implies a reward. Managing promises — keeping them, selectively subverting them, never accidentally breaking them — is the discipline of spatial scripting.' },
+    ],
+    questions: [
+      'How many meaningful decisions does the player make per minute in this level?',
+      'Trace the gate-and-key structure: where does the player first see the gate, and when do they receive the key?',
+      'What level type does this use — and is that type the right philosophical choice for this experience?',
+      'Map one choice node: what does each option promise, and what does it deliver?',
+      'Which moments are scripted and which are emergent? Is the balance intentional?',
+    ]
+  },
+  world: {
+    color: '#2E7D32',
+    role: 'Amplifier 1 — Transforms the Constants',
+    title: 'WORLD',
+    definition: 'World is the fictional foundation that motivates every spatial decision. Architecture is a civilisational argument — every doorway, material, and scale implies a culture, a history, and a set of beliefs. World is not lore. It is not backstory. It is the design constraint from which great levels emerge rather than a layer applied after.',
+    lenses: [
+      { name: 'History', desc: 'What happened to this space before the player arrived? The physical evidence of past events — construction, damage, modification, abandonment — is the most powerful world-building tool available to a level designer. History makes space feel inhabited rather than constructed.' },
+      { name: 'Ecology', desc: 'The environmental logic of the world: climate, materials, vegetation, light. Ecology ensures that everything in the level belongs to the same physical system. Incongruent materials are the most common sign of a world without ecology.' },
+      { name: 'Civilisation', desc: 'Who built this, what did they believe, and what did they value? Architecture is a civilisational argument — Undead Burg\'s cramped, overlapping structures argue for a society of desperate survival; Anor Londo\'s vast scale argues for a theology of godhood.' },
+      { name: 'Aesthetic Identity', desc: 'The visual language that unifies the world: material palette, decorative logic, scale relationships, lighting quality. Aesthetic identity is not art style — it is the internally consistent visual system that makes a world feel real rather than assembled.' },
+      { name: 'Central Event', desc: 'The defining event that shaped the world into its current state. The fading First Flame in Dark Souls. The fall of Rapture in Bioshock. The central event explains why the space looks the way it does today — and implies what it looked like before.' },
+      { name: 'World Primer', desc: 'The design document that governs every spatial decision: five sections (History / Ecology / Civilisation / Aesthetic Identity / Central Event). The rule is absolute: every decision must be motivated by world logic, not aesthetic preference.' },
+    ],
+    questions: [
+      'What happened here before the player arrived? What is the physical evidence?',
+      'Who built this space? What did they believe, and what does the architecture argue?',
+      'Is the material logic internally consistent — does every surface belong to the same ecological and civilisational system?',
+      'What is the central event that explains the current state of this space?',
+      'Remove all game HUD and title — can a viewer infer the world\'s history, ecology, and civilisation from the space alone?',
+    ]
+  },
+  narr: {
+    color: '#AD1457',
+    role: 'Amplifier 2 — Transforms the Constants',
+    title: 'NARRATIVE',
+    definition: 'Narrative is what the space tells through what it contains and implies. The most powerful environmental stories are those the player constructs from evidence — not those they are told. Every object in the space is a narrative argument. If an object has no story, it has no reason to exist.',
+    lenses: [
+      { name: 'Object Biography', desc: 'Every object has a history: who owned it, how it was used, how it arrived at its current position. Object placement is narrative placement. A turned-over chair tells a different story than an upright one — but only if it is placed with intent.' },
+      { name: 'Architectural Aging', desc: 'The spatial condition of the surface: fire, water, age, violent impact, deliberate modification. Aging tells time. A wall with three different paint layers tells three occupancies. The sequence of aging is a plot the player reads without being told to.' },
+      { name: 'The In-Absentia Character', desc: 'A person who is present through their absence — objects, arrangements, and conditions that reveal a character who is no longer in the space. The most powerful in-absentia characters leave contradictory evidence: the player reconstructs them from inconsistency.' },
+      { name: 'Sightlines as Irony', desc: 'A sightline that reveals narrative information the player cannot yet access — a distant event, a visible consequence of an unseen cause. Narrative sightlines create dramatic irony: the player sees what they cannot yet understand.' },
+      { name: 'Atmosphere', desc: 'The emotional residue of past events — what the space feels like before the player understands why. Atmosphere is produced by lighting quality, sound, scale, and the accumulation of small narrative details that individually are inexplicable but collectively produce a tone.' },
+      { name: 'Environmental Haiku', desc: 'The discipline of telling a complete story — one character, one event, one emotional state — using the minimum number of objects. The best environmental stories are those that communicate everything with three objects placed with absolute precision.' },
+    ],
+    questions: [
+      'What story does this space tell before the player touches anything?',
+      'What is the spatial condition of each surface — fire, age, impact, modification? What does each condition imply?',
+      'Is there an in-absentia character? What contradictions in the evidence make them feel real rather than described?',
+      'Remove all text from the space: can the narrative still be read from objects and conditions alone?',
+      'What is the one object that tells the most — and does its placement make that argument clearly?',
+    ]
+  }
+};
+
+function openElementInfo(key) {
+  const info = ELEMENT_INFO[key];
+  if (!info) return;
+
+  const head = document.getElementById('elModalHead');
+  head.style.borderBottom = `3px solid ${info.color}`;
+  document.getElementById('elModalRole').style.color = info.color;
+  document.getElementById('elModalRole').textContent = info.role;
+  document.getElementById('elModalTitle').style.color = info.color;
+  document.getElementById('elModalTitle').textContent = info.title;
+
+  const lensesHTML = info.lenses.map(l => `
+    <div class="el-lens" style="border-left-color:${info.color}">
+      <div style="flex:1">
+        <div class="el-lens-name" style="color:${info.color}">${l.name}</div>
+        <div class="el-lens-desc">${l.desc}</div>
+      </div>
+    </div>`).join('');
+
+  const questionsHTML = info.questions.map(q =>
+    `<div class="el-ask-q">${q}</div>`).join('');
+
+  document.getElementById('elModalBody').innerHTML = `
+    <div class="el-definition">${info.definition}</div>
+    <div>
+      <div class="el-section-label">Lenses for Analysis</div>
+      <div class="el-lenses">${lensesHTML}</div>
+    </div>
+    <div class="el-ask">
+      <div class="el-section-label" style="margin-bottom:10px">Questions to Ask</div>
+      ${questionsHTML}
+    </div>
+  `;
+  document.getElementById('elModal').style.display = 'flex';
+}
+
+function closeElementInfo() { document.getElementById('elModal').style.display = 'none'; }
 
 // ── START ─────────────────────────────────────────────────────
 init();
