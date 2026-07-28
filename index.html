@@ -15,7 +15,6 @@
     --mute-d: #6B6850;
     --txt-d:  #1A1A10;
     --purple: #5535A8;
-    /* Primary element colors: Blue, Yellow, Red, Green, Magenta */
     --space:  #1565C0;
     --exp:    #CC8800;
     --play:   #C62828;
@@ -25,17 +24,13 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--txt-d); min-height: 100vh; }
 
-  /* ── HEADER ── */
   .header { padding: 22px 32px 18px; background: var(--header); border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 16px; }
   .header h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 700; color: var(--txt-d); letter-spacing: -0.5px; }
   .header p  { font-size: 13px; color: var(--mute-d); }
 
-  /* ── LAYOUT ── */
   .layout { display: grid; grid-template-columns: 360px 1fr; min-height: calc(100vh - 72px); }
 
-  /* ── LEFT PANEL ── */
   .panel { background: var(--card); border-right: 1px solid var(--border); padding: 22px; display: flex; flex-direction: column; gap: 18px; overflow-y: auto; }
-
   .panel-label { font-size: 9px; font-weight: 700; letter-spacing: 3px; color: var(--mute-d); text-transform: uppercase; margin-bottom: 8px; }
 
   .txt-input {
@@ -57,10 +52,8 @@
   .btn-ghost  { background: rgba(0,0,0,0.05); color: var(--mute-d); font-weight: 500; }
   .btn-ghost:hover { background: rgba(0,0,0,0.1); }
 
-  /* ── ELEMENT ROWS ── */
   .element-row { display: flex; flex-direction: column; gap: 6px; padding-bottom: 20px; margin-bottom: 4px; border-bottom: 1px solid var(--border); }
   .element-row:last-child { border-bottom: none; padding-bottom: 0; }
-
   .element-header { display: flex; justify-content: space-between; align-items: center; }
   .element-name   { display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 800; letter-spacing: 0.5px; }
   .element-dot    { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
@@ -70,13 +63,9 @@
   .slider-fill  { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; transition: width 0.1s; }
   input[type=range] { position: absolute; inset: -7px 0; opacity: 0; cursor: pointer; width: 100%; }
 
-  /* ── THREE-FIELD RATIONALE ── */
   .rat-block { display: flex; flex-direction: column; gap: 5px; }
   .rat-field { display: flex; flex-direction: column; gap: 2px; }
-  .rat-label {
-    font-size: 7.5px; font-weight: 800; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--mute);
-  }
+  .rat-label { font-size: 7.5px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--mute); }
   .rationale-input {
     width: 100%; background: rgba(0,0,0,0.035); border: 1px solid rgba(0,0,0,0.09);
     border-radius: 6px; padding: 8px 10px; font-size: 11px;
@@ -87,7 +76,6 @@
   .rationale-input::placeholder { color: var(--mute); font-style: italic; }
   .rationale-input:focus { border-color: rgba(0,0,0,0.22); background: #FFFEF8; }
 
-  /* ── GAME CHIPS ── */
   .game-list { display: flex; flex-direction: column; gap: 5px; }
   .game-chip { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(0,0,0,0.04); border-radius: 8px; border: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
   .game-chip:hover { background: rgba(0,0,0,0.07); }
@@ -99,126 +87,80 @@
   .btn-del:hover { color: var(--play); }
   .empty-state { font-size: 12px; color: var(--mute); text-align: center; padding: 12px 0; font-style: italic; }
 
-  /* ── RIGHT PANEL ── */
   .canvas-wrap { padding: 32px; display: flex; flex-direction: column; gap: 32px; overflow-y: auto; }
-
   .section-head { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 3px solid var(--txt-d); padding-bottom: 10px; }
   .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: var(--txt-d); }
 
-  /* ── ELEMENT KEY ── */
   .element-key { display: flex; gap: 20px; flex-wrap: wrap; }
   .key-item    { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
   .key-dot     { width: 13px; height: 13px; border-radius: 50%; }
 
-  /* ── SPECTRUM ── */
   .spectrum-outer { background: var(--card); border-radius: 14px; border: 1px solid var(--border); padding: 0; overflow: hidden; }
   .spectrum-empty { text-align: center; padding: 48px 24px; color: var(--mute-d); font-size: 14px; font-style: italic; }
-
-  /* Wrapper: side-mounted vertical axis + card stack */
   .spectrum-with-axis { display: flex; }
-
-  /* Vertical spectrum axis strip on the left */
   .spectrum-v-axis {
     width: 36px; flex-shrink: 0; display: flex; flex-direction: column;
     align-items: center; padding: 16px 0;
     border-right: 1px solid var(--border); background: rgba(0,0,0,0.015);
   }
-  .v-axis-label {
-    font-size: 8px; font-weight: 800; letter-spacing: 2.5px; color: var(--mute);
-    text-transform: uppercase; writing-mode: vertical-lr; text-orientation: mixed;
-  }
+  .v-axis-label { font-size: 8px; font-weight: 800; letter-spacing: 2.5px; color: var(--mute); text-transform: uppercase; writing-mode: vertical-lr; text-orientation: mixed; }
   .v-axis-label.bottom { transform: rotate(180deg); }
-  .v-axis-line {
-    flex: 1; width: 2px; margin: 10px 0;
-    background: linear-gradient(to bottom, var(--mute) 0%, var(--purple) 100%);
-    border-radius: 2px; opacity: 0.45;
-  }
-
-  /* Vertical card stack */
+  .v-axis-line { flex: 1; width: 2px; margin: 10px 0; background: linear-gradient(to bottom, var(--mute) 0%, var(--purple) 100%); border-radius: 2px; opacity: 0.45; }
   .spectrum-grid { display: flex; flex-direction: column; flex: 1; }
 
-  .game-col {
-    display: grid; grid-template-columns: 40% 60%;
-    border-bottom: 1px solid rgba(0,0,0,0.07); cursor: pointer;
-    transition: background 0.15s; animation: fadeIn 0.25s ease; position: relative;
-  }
+  .game-col { display: grid; grid-template-columns: 40% 60%; border-bottom: 1px solid rgba(0,0,0,0.07); cursor: pointer; transition: background 0.15s; animation: fadeIn 0.25s ease; position: relative; }
   .game-col:last-child { border-bottom: none; }
   .game-col:hover { background: rgba(0,0,0,0.02); }
   .game-col.sel   { background: rgba(85,53,168,0.06); }
-
   @keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
 
-  /* Left sub-column: title + pentagon */
   .col-left { display: flex; flex-direction: column; align-items: center; padding: 10px 10px 8px; border-right: 1px solid rgba(0,0,0,0.07); }
-  /* Pentagon SVG scales to fill the column */
   .col-left svg { width: 60%; height: auto; }
   .col-name  { font-size: 20px; font-weight: 800; color: var(--txt-d); text-align: center; font-family: 'Playfair Display', Georgia, serif; margin-bottom: 4px; line-height: 1.2; }
   .col-sub   { font-size: 16px; color: var(--mute-d); text-align: center; font-style: italic; margin-bottom: 10px; line-height: 1.4; }
   .col-score { font-size: 20px; font-weight: 800; font-family: 'Playfair Display', Georgia, serif; margin-top: 0; line-height: 1.2; }
-
-  /* Right sub-column: analysis text */
   .col-right { padding: 10px 20px; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
   .col-rat-row { display: flex; gap: 10px; align-items: flex-start; }
   .col-rat-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
   .col-rat-text { font-size: 18px; color: var(--mute-d); font-style: italic; line-height: 1.5; }
 
-  /* zoom button on game card */
   .col-zoom-btn {
     position: absolute; top: 8px; right: 8px;
     background: rgba(0,0,0,0.07); border: none; border-radius: 6px;
     width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
-    cursor: pointer; font-size: 13px; color: var(--mute-d); transition: background 0.15s;
-    line-height: 1;
+    cursor: pointer; font-size: 13px; color: var(--mute-d); transition: background 0.15s; line-height: 1;
   }
   .col-zoom-btn:hover { background: rgba(0,0,0,0.14); color: var(--txt-d); }
 
-  /* radar tooltip */
   .p-circle::after {
     content: attr(data-tip); position: absolute; bottom: 24px; left: 50%;
     transform: translateX(-50%); background: var(--txt-d); color: #F2EFD8;
     font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 3px 7px;
-    border-radius: 4px; white-space: nowrap; pointer-events: none; opacity: 0;
-    transition: opacity 0.15s;
+    border-radius: 4px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.15s;
   }
   .p-circle:hover::after { opacity: 1; }
 
-  /* ── COMPARISON TABLE ── */
   .comp-wrap { display: flex; flex-direction: column; gap: 0; }
   .comp-section-head { border-bottom: 4px solid var(--txt-d); padding-bottom: 12px; margin-bottom: 0; }
   .comp-section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 30px; font-weight: 700; color: var(--txt-d); }
   .comp-section-sub   { font-size: 13px; color: var(--mute-d); margin-top: 5px; font-style: italic; }
-
   .comp-table { background: var(--card); border-radius: 0 0 14px 14px; border: 1px solid var(--border); border-top: none; overflow: hidden; }
   .comp-table table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .comp-table th {
-    padding: 12px 16px; text-align: left; font-size: 10px; font-weight: 800;
-    letter-spacing: 2px; border-bottom: 2px solid rgba(0,0,0,0.12); background: #EDE9D0;
-  }
+  .comp-table th { padding: 12px 16px; text-align: left; font-size: 10px; font-weight: 800; letter-spacing: 2px; border-bottom: 2px solid rgba(0,0,0,0.12); background: #EDE9D0; }
   .comp-table td { padding: 11px 16px; border-bottom: 1px solid rgba(0,0,0,0.05); }
   .comp-table tr:last-child td { border-bottom: none; }
-
   .td-bar { display: flex; align-items: center; gap: 8px; }
   .td-mini-bar { height: 8px; border-radius: 4px; min-width: 4px; transition: width 0.3s; }
   .td-val  { font-size: 12px; font-weight: 700; min-width: 22px; }
   .td-total { font-weight: 800; font-size: 17px; }
   .td-game-name { font-weight: 700; font-size: 14px; }
 
-  /* ── SUBMISSIONS MODAL ── */
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100;
-    display: flex; align-items: center; justify-content: center;
-    animation: fadeIn 0.2s ease;
-  }
-  .modal {
-    background: var(--card); border-radius: 14px; width: 96%; max-width: 1200px;
-    height: 88vh; display: flex; flex-direction: column; overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-  }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100; display: flex; align-items: center; justify-content: center; animation: fadeIn 0.2s ease; }
+  .modal { background: var(--card); border-radius: 14px; width: 96%; max-width: 1200px; height: 88vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
   .modal-head { padding: 16px 24px; border-bottom: 2px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--header); flex-shrink: 0; }
   .modal-head h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; }
   .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--mute-d); line-height: 1; }
 
-  /* two-panel layout inside submissions modal */
   .sub-layout { display: grid; grid-template-columns: 240px 1fr; flex: 1; overflow: hidden; }
   .sub-sidebar { border-right: 1px solid var(--border); overflow-y: auto; display: flex; flex-direction: column; background: var(--bg); }
   .sub-sidebar-head { padding: 14px 16px 10px; font-size: 9px; font-weight: 700; letter-spacing: 3px; color: var(--mute-d); text-transform: uppercase; border-bottom: 1px solid var(--border); flex-shrink: 0; }
@@ -228,11 +170,9 @@
   .sub-sidebar-name { font-size: 14px; font-weight: 700; color: var(--txt-d); }
   .sub-sidebar-time { font-size: 10px; color: var(--mute); margin-top: 2px; }
   .sub-sidebar-count { font-size: 10px; color: var(--mute-d); margin-top: 2px; font-style: italic; }
-
   .sub-viewer { overflow-y: auto; padding: 28px 32px; display: flex; flex-direction: column; gap: 32px; }
   .sub-viewer-empty { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--mute); font-style: italic; font-size: 14px; }
 
-  /* spectrum inside submission viewer */
   .sv-spectrum-outer { background: var(--card); border-radius: 14px; border: 1px solid var(--border); padding: 20px 20px 14px; overflow-x: auto; }
   .sv-spectrum-grid  { display: flex; gap: 0; align-items: stretch; min-width: 400px; }
   .sv-game-col { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 14px 10px 12px; border-right: 1px solid rgba(0,0,0,0.07); border-radius: 8px; position: relative; }
@@ -241,7 +181,6 @@
   .sv-col-sub  { font-size: 9px; color: var(--mute-d); text-align: center; font-style: italic; margin-bottom: 10px; }
   .sv-col-score { font-size: 13px; font-weight: 800; margin-top: 6px; }
 
-  /* comparison table inside submission viewer */
   .sv-comp-head { border-bottom: 3px solid var(--txt-d); padding-bottom: 10px; }
   .sv-comp-title { font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 700; color: var(--txt-d); }
   .sv-comp-sub   { font-size: 12px; color: var(--mute-d); margin-top: 4px; font-style: italic; }
@@ -250,15 +189,9 @@
   .sv-comp-table th { padding: 11px 14px; text-align: left; font-size: 10px; font-weight: 800; letter-spacing: 2px; border-bottom: 2px solid rgba(0,0,0,0.12); background: #EDE9D0; }
   .sv-comp-table td { padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.05); }
   .sv-comp-table tr:last-child td { border-bottom: none; }
-
   .modal-empty { text-align: center; padding: 40px; color: var(--mute); font-style: italic; }
 
-  /* ── ZOOM MODAL ── */
-  .zoom-modal {
-    background: var(--card); border-radius: 14px; width: 90%; max-width: 540px;
-    max-height: 88vh; display: flex; flex-direction: column; overflow: hidden;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.3);
-  }
+  .zoom-modal { background: var(--card); border-radius: 14px; width: 90%; max-width: 540px; max-height: 88vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.3); }
   .zoom-modal-head { padding: 20px 24px 14px; border-bottom: 2px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--header); flex-shrink: 0; }
   .zoom-modal-title { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; }
   .zoom-modal-body { padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
@@ -282,19 +215,12 @@
 </div>
 
 <div class="layout">
-
-  <!-- ── LEFT PANEL ── -->
   <div class="panel">
-
-    <!-- Student name -->
     <div>
       <div class="panel-label">Your name</div>
       <input class="txt-input" id="studentName" type="text" placeholder="First Name_Last Name_Batch" maxlength="60">
     </div>
-
     <div style="height:1px;background:var(--border)"></div>
-
-    <!-- Add game -->
     <div>
       <div class="panel-label">Add a game</div>
       <div class="game-input-wrap">
@@ -302,22 +228,16 @@
         <button class="btn btn-purple" id="addBtn" onclick="addGame()">Add</button>
       </div>
     </div>
-
-    <!-- Element sliders -->
     <div>
       <div class="panel-label">Rate each element (0 – 5)</div>
       <div id="sliders"></div>
     </div>
-
-    <!-- Game list -->
     <div style="flex:1">
       <div class="panel-label">Games on the spectrum</div>
       <div class="game-list" id="gameList">
         <div class="empty-state">No games yet — add one above</div>
       </div>
     </div>
-
-    <!-- Actions -->
     <div style="display:flex;flex-direction:column;gap:8px">
       <button class="btn btn-teal" onclick="submitWork()">Submit</button>
       <div style="display:flex;gap:8px">
@@ -325,18 +245,14 @@
         <button class="btn btn-ghost" onclick="clearAll()">Clear</button>
       </div>
     </div>
-
   </div>
 
-  <!-- ── RIGHT PANEL ── -->
   <div class="canvas-wrap">
-
     <div>
       <div class="section-head">
         <div class="section-title">The Spectrum</div>
       </div>
     </div>
-
     <div class="element-key">
       <div class="key-item"><div class="key-dot" style="background:var(--space)"></div><span style="color:var(--space)">SPACE</span></div>
       <div class="key-item"><div class="key-dot" style="background:var(--exp)"></div><span style="color:var(--exp)">EXPERIENCE</span></div>
@@ -344,7 +260,6 @@
       <div class="key-item"><div class="key-dot" style="background:var(--world)"></div><span style="color:var(--world)">WORLD</span></div>
       <div class="key-item"><div class="key-dot" style="background:var(--narr)"></div><span style="color:var(--narr)">NARRATIVE</span></div>
     </div>
-
     <div class="spectrum-outer" id="spectrumWrap">
       <div class="spectrum-empty" id="emptyMsg">Add games on the left to begin mapping the spectrum.</div>
       <div class="spectrum-with-axis" id="spectrumWithAxis" style="display:none">
@@ -356,7 +271,6 @@
         <div class="spectrum-grid" id="spectrumGrid"></div>
       </div>
     </div>
-
     <div class="comp-wrap">
       <div class="comp-section-head">
         <div class="comp-section-title">Game Levels Comparisons</div>
@@ -381,11 +295,10 @@
         </table>
       </div>
     </div>
-
   </div>
 </div>
 
-<!-- ── SUBMISSIONS MODAL ── -->
+<!-- SUBMISSIONS MODAL -->
 <div class="modal-overlay" id="subModal" style="display:none" onclick="if(event.target===this)closeSubmissions()">
   <div class="modal">
     <div class="modal-head">
@@ -408,7 +321,7 @@
   </div>
 </div>
 
-<!-- ── ZOOM MODAL ── -->
+<!-- ZOOM MODAL -->
 <div class="modal-overlay" id="zoomModal" style="display:none" onclick="if(event.target===this)closeZoom()">
   <div class="zoom-modal">
     <div class="zoom-modal-head">
@@ -435,9 +348,9 @@ const ELEMENTS = [
   { key:'narr',  label:'NARRATIVE',  color:'#AD1457' },
 ];
 
-let games        = [];
-let selected     = null;
-let draft        = {};
+let games          = [];
+let selected       = null;
+let draft          = {};
 let draftRationale = {};
 
 // ── SESSION PERSISTENCE ───────────────────────────────────────
@@ -513,17 +426,15 @@ function radarSVG(vals, size) {
     const dist = r + 16;
     const lx = cx + dist * Math.cos(angles[i]);
     const ly = cy + dist * Math.sin(angles[i]);
-    const lbl = shortLabels[i];
     return `<text x="${lx}" y="${ly + 1}" text-anchor="middle" dominant-baseline="middle"
         font-size="11" font-weight="900" fill="${el.color}"
-        font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">${lbl}</text>`;
+        font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">${shortLabels[i]}</text>`;
   }).join('');
 
   return `<svg width="${size}" height="${size}" viewBox="${-pad} ${-pad} ${size+2*pad} ${size+2*pad}">
     ${rings}${axes}
     <polygon points="${vPts}" fill="${fillColor}" fill-opacity="0.14" stroke="${fillColor}" stroke-width="2.5" stroke-linejoin="round"/>
-    ${dots}
-    ${vtxLabels}
+    ${dots}${vtxLabels}
   </svg>`;
 }
 
@@ -535,39 +446,41 @@ function init() {
   document.getElementById('nameInput').addEventListener('keydown', e => { if (e.key === 'Enter') addGame(); });
   document.getElementById('studentName').addEventListener('input', saveSession);
 
-  // Restore previous session; only load example games on first visit
-  if (!loadSession()) [
-    { name:'Tetris',
-      vals:{space:3,exp:3,play:5,world:0,narr:0},
-      rat:{
-        space:'Pieces fall in a fixed vertical grid with no authored environment. The level IS the grid — only spatial constraint exists. 3 — space is functional but has no designed depth beyond the mechanic.',
-        exp:  'Pressure builds as the stack rises; clearing a line delivers relief. There is a tension-release arc, even without narrative. 3 — a clear experiential beat, but generated by mechanics, not design intent.',
-        play: 'Every input is a spatial decision: rotate, shift, drop. The entire game is its interactive layer — nothing else. 5 — play is total and undiluted.',
-        world:'No environment, no setting, no fictional context of any kind. There is no world to design for. 0 — this element does not exist in Tetris.',
-        narr: 'No story, no characters, no objects that carry meaning. Narrative is absent by design. 0 — not applicable.',
-      },
-      sub:'No world. No story. Pure spatial logic.' },
-    { name:'Portal',
-      vals:{space:5,exp:4,play:4,world:2,narr:3},
-      rat:{
-        space:'Each test chamber is enclosed with deliberate sightlines and portal surfaces. Space IS the puzzle — every surface placement is a spatial argument. 5 — the spatial design is the level; nothing is incidental.',
-        exp:  'Chambers build from simple to compound combinations, ending in GLaDOS\'s reveal. A clear arc: wonder → understanding → subversion. 4 — strong beat structure, though pacing dips in the middle third.',
-        play: 'The portal gun creates two-point connections the player manipulates to move through space. Gate-and-key design where the key is also the mechanic. 4 — tight and inventive; slight repetition weakens the final third.',
-        world:'Aperture Science exists as signage, intercom voices, and a deteriorating facility. World-building is atmospheric flavour, not systemic depth. 2 — the world is present as texture, not as a designed system.',
-        narr: 'GLaDOS narrates, the environment deteriorates, personality spheres reveal history. Story told entirely through environment — no cutscenes needed. 3 — effective but thin; narrative serves the twist, not the levels.',
-      },
-      sub:'Minimal world. Story via environment.' },
-    { name:'Dark Souls',
-      vals:{space:5,exp:5,play:5,world:5,narr:5},
-      rat:{
-        space:'The Undead Burg connects to the Parish, which loops back above Firelink — all visible and traversable. Spatial awareness IS the gameplay. 5 — interconnected world design at benchmark level; every path is authored.',
-        exp:  'Each area begins with dread, yields mastery through repetition, delivers relief at the bonfire. Dread → mastery → relief → dread again, precisely repeated. 5 — the most deliberately paced experiential loop in the medium.',
-        play: 'Every encounter is a read-and-react sequence with real punishment for failure. Failure teaches; the level is a series of authored consequences. 5 — every encounter is a designed choice with meaningful, learnable consequence.',
-        world:'Lore is in item descriptions, ruins, NPC fragments, and enemy placement. The world has history, ecology, and a central event — the fading First Flame. 5 — fully systemic; nothing exists without a narrative-world reason.',
-        narr: 'Every item description, enemy type, and surface material carries embedded story. Reading the environment IS reading the narrative. 5 — narrative is inseparable from space; decoration does not exist here.',
-      },
-      sub:'All five elements fully realised.' },
-  ].forEach(g => games.push({ name:g.name, values:g.vals, rationale:g.rat, sub:g.sub }));
+  // Load saved session; fall back to example games on first visit
+  if (!loadSession()) {
+    [
+      { name:'Tetris',
+        vals:{space:3,exp:3,play:5,world:0,narr:0},
+        rat:{
+          space:'Pieces fall in a fixed vertical grid with no authored environment. The level IS the grid — only spatial constraint exists. 3 — space is functional but has no designed depth beyond the mechanic.',
+          exp:  'Pressure builds as the stack rises; clearing a line delivers relief. There is a tension-release arc, even without narrative. 3 — a clear experiential beat, but generated by mechanics, not design intent.',
+          play: 'Every input is a spatial decision: rotate, shift, drop. The entire game is its interactive layer — nothing else. 5 — play is total and undiluted.',
+          world:'No environment, no setting, no fictional context of any kind. There is no world to design for. 0 — this element does not exist in Tetris.',
+          narr: 'No story, no characters, no objects that carry meaning. Narrative is absent by design. 0 — not applicable.',
+        },
+        sub:'No world. No story. Pure spatial logic.' },
+      { name:'Portal',
+        vals:{space:5,exp:4,play:4,world:2,narr:3},
+        rat:{
+          space:'Each test chamber is enclosed with deliberate sightlines and portal surfaces. Space IS the puzzle — every surface placement is a spatial argument. 5 — the spatial design is the level; nothing is incidental.',
+          exp:  'Chambers build from simple to compound combinations, ending in GLaDOS\'s reveal. A clear arc: wonder → understanding → subversion. 4 — strong beat structure, though pacing dips in the middle third.',
+          play: 'The portal gun creates two-point connections the player manipulates to move through space. Gate-and-key design where the key is also the mechanic. 4 — tight and inventive; slight repetition weakens the final third.',
+          world:'Aperture Science exists as signage, intercom voices, and a deteriorating facility. World-building is atmospheric flavour, not systemic depth. 2 — the world is present as texture, not as a designed system.',
+          narr: 'GLaDOS narrates, the environment deteriorates, personality spheres reveal history. Story told entirely through environment — no cutscenes needed. 3 — effective but thin; narrative serves the twist, not the levels.',
+        },
+        sub:'Minimal world. Story via environment.' },
+      { name:'Dark Souls',
+        vals:{space:5,exp:5,play:5,world:5,narr:5},
+        rat:{
+          space:'The Undead Burg connects to the Parish, which loops back above Firelink — all visible and traversable. Spatial awareness IS the gameplay. 5 — interconnected world design at benchmark level; every path is authored.',
+          exp:  'Each area begins with dread, yields mastery through repetition, delivers relief at the bonfire. Dread → mastery → relief → dread again, precisely repeated. 5 — the most deliberately paced experiential loop in the medium.',
+          play: 'Every encounter is a read-and-react sequence with real punishment for failure. Failure teaches; the level is a series of authored consequences. 5 — every encounter is a designed choice with meaningful, learnable consequence.',
+          world:'Lore is in item descriptions, ruins, NPC fragments, and enemy placement. The world has history, ecology, and a central event — the fading First Flame. 5 — fully systemic; nothing exists without a narrative-world reason.',
+          narr: 'Every item description, enemy type, and surface material carries embedded story. Reading the environment IS reading the narrative. 5 — narrative is inseparable from space; decoration does not exist here.',
+        },
+        sub:'All five elements fully realised.' },
+    ].forEach(g => games.push({ name:g.name, values:g.vals, rationale:g.rat, sub:g.sub }));
+  }
 
   renderAll();
 }
@@ -648,7 +561,7 @@ function addGame() {
   if (selected !== null) {
     selected = null; resetDraft(); setInputs(draft, draftRationale);
     inp.value = ''; document.getElementById('addBtn').textContent = 'Add';
-    renderAll(); return;
+    renderAll(); saveSession(); return;
   }
 
   games.push({ name, values:{...draft}, rationale:{...draftRationale}, sub:makeSubtitle(draft) });
@@ -660,7 +573,7 @@ function addGame() {
 function makeSubtitle(vals) {
   const active = ELEMENTS.filter(el => vals[el.key] >= 3).map(el => el.label);
   const total  = Object.values(vals).reduce((a,b)=>a+b,0);
-  if (total === 0)        return 'No elements rated yet';
+  if (total === 0)         return 'No elements rated yet';
   if (active.length === 5) return 'All five elements strong';
   if (active.length === 0) return 'Mostly low ratings';
   return active.map(l => l[0]+l.slice(1).toLowerCase()).join(' + ')+' dominant';
@@ -712,8 +625,7 @@ function openZoom(poolIdx) {
   const scoreColor = total >= 20 ? '#1E7A58' : total >= 12 ? '#1565C0' : '#5535A8';
 
   document.getElementById('zoomTitle').textContent = g.name;
-  document.getElementById('zoomScore').innerHTML =
-    `<span style="color:${scoreColor}">${total}/25</span>`;
+  document.getElementById('zoomScore').innerHTML = `<span style="color:${scoreColor}">${total}/25</span>`;
 
   const rat = g.rationale || {};
   const ratRows = ELEMENTS.map(el => {
@@ -737,20 +649,15 @@ function openZoom(poolIdx) {
   }).join('');
 
   document.getElementById('zoomBody').innerHTML = `
-    <div style="display:flex;justify-content:center;margin-bottom:4px">
-      ${radarSVG(g.values, 220)}
-    </div>
+    <div style="display:flex;justify-content:center;margin-bottom:4px">${radarSVG(g.values, 220)}</div>
     <div style="font-size:11px;color:var(--mute);text-align:center;font-style:italic;margin-top:-8px">${g.sub}</div>
     <hr style="border:none;border-top:1px solid var(--border)">
     <div>${ratRows}</div>
   `;
-
   document.getElementById('zoomModal').style.display = 'flex';
 }
 
-function closeZoom() {
-  document.getElementById('zoomModal').style.display = 'none';
-}
+function closeZoom() { document.getElementById('zoomModal').style.display = 'none'; }
 
 // ── SUBMISSIONS ───────────────────────────────────────────────
 async function submitWork() {
@@ -762,14 +669,13 @@ async function submitWork() {
   const batch = parts.length >= 3 ? parts[parts.length - 1] : '';
 
   const record = {
-    studentName,
-    batch,
+    studentName, batch,
     version: FRAMEWORK_VERSION,
     submittedAt: new Date().toISOString(),
     games: games.map(g => ({ name:g.name, values:{...g.values}, rationale:{...(g.rationale||{})}, sub:g.sub })),
   };
 
-  // Always save locally as a backup
+  // Always save locally as backup
   const stored = JSON.parse(localStorage.getItem('spectrum_submissions') || '[]');
   const today  = new Date().toDateString();
   const idx    = stored.findIndex(s => s.studentName.toLowerCase() === studentName.toLowerCase() &&
@@ -807,7 +713,7 @@ function renderSidebarList() {
     return;
   }
   sidebar.innerHTML = _submissions.map((s, i) => {
-    const time = new Date(s.submittedAt).toLocaleString(undefined, {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+    const time  = new Date(s.submittedAt).toLocaleString(undefined, {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
     const batch = s.batch ? `<div class="sub-sidebar-count" style="color:var(--purple);font-style:normal">Batch ${s.batch}</div>` : '';
     return `<div class="sub-sidebar-item" id="sub-item-${i}" onclick="showSubmission(${i})">
       <div class="sub-sidebar-name">${s.studentName}</div>
@@ -840,16 +746,10 @@ async function loadFromServer() {
 function openSubmissions() {
   _submissions = JSON.parse(localStorage.getItem('spectrum_submissions') || '[]').slice().reverse();
   _subSelected = -1;
-
   renderSidebarList();
-
-  if (_submissions.length) {
-    showSubmission(0);
-  } else {
-    document.getElementById('subViewer').innerHTML =
-      '<div class="sub-viewer-empty">No local submissions yet. Click "Load from Server" to fetch all student work.</div>';
-  }
-
+  if (_submissions.length) showSubmission(0);
+  else document.getElementById('subViewer').innerHTML =
+    '<div class="sub-viewer-empty">No local submissions yet. Click "Load from Server" to fetch all student work.</div>';
   document.getElementById('subModal').style.display = 'flex';
 }
 
@@ -862,12 +762,11 @@ function showSubmission(idx) {
   const item = document.getElementById(`sub-item-${idx}`);
   if (item) item.classList.add('active');
 
-  const s = _submissions[idx];
+  const s      = _submissions[idx];
   const viewer = document.getElementById('subViewer');
 
   const sortedGames = [...s.games]
     .sort((a,b) => Object.values(a.values).reduce((x,y)=>x+y,0) - Object.values(b.values).reduce((x,y)=>x+y,0));
-
   _zoomPool = sortedGames;
 
   const spectrumCols = sortedGames.map((g, poolIdx) => {
@@ -894,25 +793,15 @@ function showSubmission(idx) {
 
   const sortedForTable = [...s.games]
     .sort((a,b) => Object.values(b.values).reduce((x,y)=>x+y,0) - Object.values(a.values).reduce((x,y)=>x+y,0));
-
   const tableRows = sortedForTable.map(g => {
     const total = Object.values(g.values).reduce((a,b)=>a+b,0);
     const scoreColor = total >= 20 ? '#1E7A58' : total >= 12 ? '#1565C0' : '#5535A8';
     const cells = ELEMENTS.map(el => {
       const v = g.values[el.key] || 0;
       const w = Math.round(v/5*80);
-      return `<td>
-        <div class="td-bar">
-          <div class="td-mini-bar" style="width:${w}px;background:${el.color}"></div>
-          <div class="td-val" style="color:${el.color}">${v}</div>
-        </div>
-      </td>`;
+      return `<td><div class="td-bar"><div class="td-mini-bar" style="width:${w}px;background:${el.color}"></div><div class="td-val" style="color:${el.color}">${v}</div></div></td>`;
     }).join('');
-    return `<tr>
-      <td class="td-game-name">${g.name}</td>
-      ${cells}
-      <td><span class="td-total" style="color:${scoreColor}">${total}</span><span style="font-size:11px;color:var(--mute)">/25</span></td>
-    </tr>`;
+    return `<tr><td class="td-game-name">${g.name}</td>${cells}<td><span class="td-total" style="color:${scoreColor}">${total}</span><span style="font-size:11px;color:var(--mute)">/25</span></td></tr>`;
   }).join('');
 
   const elementKeyHTML = ELEMENTS.map(el =>
@@ -944,17 +833,12 @@ function showSubmission(idx) {
       </div>
       <div class="sv-comp-table">
         <table>
-          <thead>
-            <tr>
-              <th>GAME</th>
-              <th style="color:var(--space)">SPACE</th>
-              <th style="color:var(--exp)">EXPERIENCE</th>
-              <th style="color:var(--play)">PLAY</th>
-              <th style="color:var(--world)">WORLD</th>
-              <th style="color:var(--narr)">NARRATIVE</th>
-              <th>TOTAL</th>
-            </tr>
-          </thead>
+          <thead><tr>
+            <th>GAME</th>
+            <th style="color:var(--space)">SPACE</th><th style="color:var(--exp)">EXPERIENCE</th>
+            <th style="color:var(--play)">PLAY</th><th style="color:var(--world)">WORLD</th>
+            <th style="color:var(--narr)">NARRATIVE</th><th>TOTAL</th>
+          </tr></thead>
           <tbody>${tableRows}</tbody>
         </table>
       </div>
@@ -962,9 +846,7 @@ function showSubmission(idx) {
   `;
 }
 
-function closeSubmissions() {
-  document.getElementById('subModal').style.display = 'none';
-}
+function closeSubmissions() { document.getElementById('subModal').style.display = 'none'; }
 
 function exportSubmissions() {
   const stored = localStorage.getItem('spectrum_submissions') || '[]';
@@ -1001,15 +883,12 @@ function renderSpectrum() {
   const empty   = document.getElementById('emptyMsg');
   const wrapper = document.getElementById('spectrumWithAxis');
 
-  if (!games.length) {
-    wrapper.style.display='none'; empty.style.display=''; return;
-  }
+  if (!games.length) { wrapper.style.display='none'; empty.style.display=''; return; }
   empty.style.display = 'none';
   wrapper.style.display = 'flex';
 
   const sorted = [...games].map((g,i)=>({...g,idx:i}))
     .sort((a,b)=>Object.values(a.values).reduce((x,y)=>x+y,0)-Object.values(b.values).reduce((x,y)=>x+y,0));
-
   _zoomPool = sorted;
   grid.innerHTML = '';
 
@@ -1018,8 +897,7 @@ function renderSpectrum() {
     const isSel      = selected === g.idx;
     const scoreColor = total >= 20 ? '#1E7A58' : total >= 12 ? '#1565C0' : '#5535A8';
     const rat        = g.rationale || {};
-
-    const rightRows = ELEMENTS.map(el => {
+    const rightRows  = ELEMENTS.map(el => {
       const r   = rat[el.key] || '';
       const txt = (typeof r === 'object') ? [r.desc,r.interp,r.eval].filter(Boolean).join(' ') : r;
       if (!txt) return '';
@@ -1035,7 +913,6 @@ function renderSpectrum() {
     const col = document.createElement('div');
     col.className = 'game-col' + (isSel ? ' sel' : '');
     col.onclick   = () => selectGame(g.idx);
-
     col.innerHTML = `
       <button class="col-zoom-btn" title="Open full view" onclick="event.stopPropagation();openZoom(${poolIdx})">⤢</button>
       <div class="col-left">
@@ -1062,24 +939,17 @@ function renderTable() {
   }
   const sorted = [...games].map((g,i)=>({...g,idx:i}))
     .sort((a,b)=>Object.values(b.values).reduce((x,y)=>x+y,0)-Object.values(a.values).reduce((x,y)=>x+y,0));
-
   body.innerHTML = sorted.map(g => {
-    const total   = Object.values(g.values).reduce((a,b)=>a+b,0);
-    const isSel   = selected === g.idx;
+    const total      = Object.values(g.values).reduce((a,b)=>a+b,0);
+    const isSel      = selected === g.idx;
     const scoreColor = total >= 20 ? '#1E7A58' : total >= 12 ? '#1565C0' : '#5535A8';
-    const cells   = ELEMENTS.map(el => {
+    const cells      = ELEMENTS.map(el => {
       const v = g.values[el.key];
       const w = Math.round(v/5*80);
-      return `<td>
-        <div class="td-bar">
-          <div class="td-mini-bar" style="width:${w}px;background:${el.color}"></div>
-          <div class="td-val" style="color:${el.color}">${v}</div>
-        </div>
-      </td>`;
+      return `<td><div class="td-bar"><div class="td-mini-bar" style="width:${w}px;background:${el.color}"></div><div class="td-val" style="color:${el.color}">${v}</div></div></td>`;
     }).join('');
     return `<tr style="${isSel?'background:rgba(85,53,168,0.07)':''}">
-      <td class="td-game-name">${g.name}</td>
-      ${cells}
+      <td class="td-game-name">${g.name}</td>${cells}
       <td><span class="td-total" style="color:${scoreColor}">${total}</span><span style="font-size:11px;color:var(--mute)">/25</span></td>
     </tr>`;
   }).join('');
