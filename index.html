@@ -277,7 +277,6 @@
 <body>
 
 <div class="header">
-  <!-- ch1: new title -->
   <h1>Level Elements Mapping Framework</h1>
   <p>Level Design &amp; Environmental Storytelling — Studio Exercise</p>
 </div>
@@ -290,7 +289,6 @@
     <!-- Student name -->
     <div>
       <div class="panel-label">Your name</div>
-      <!-- ch6: updated placeholder -->
       <input class="txt-input" id="studentName" type="text" placeholder="First Name_Last Name_Batch" maxlength="60">
     </div>
 
@@ -321,7 +319,6 @@
 
     <!-- Actions -->
     <div style="display:flex;flex-direction:column;gap:8px">
-      <!-- ch7: "Submit" only, bigger/bolder font (handled via .btn-teal rule above) -->
       <button class="btn btn-teal" onclick="submitWork()">Submit</button>
       <div style="display:flex;gap:8px">
         <button class="btn btn-ghost" style="flex:1" onclick="openSubmissions()">View Submissions</button>
@@ -334,7 +331,6 @@
   <!-- ── RIGHT PANEL ── -->
   <div class="canvas-wrap">
 
-    <!-- ch8: removed spectrum subtitle -->
     <div>
       <div class="section-head">
         <div class="section-title">The Spectrum</div>
@@ -361,7 +357,6 @@
       </div>
     </div>
 
-    <!-- ch9: renamed + updated subtitle -->
     <div class="comp-wrap">
       <div class="comp-section-head">
         <div class="comp-section-title">Game Levels Comparisons</div>
@@ -402,12 +397,10 @@
       </div>
     </div>
     <div class="sub-layout">
-      <!-- sidebar: student list -->
       <div class="sub-sidebar">
         <div class="sub-sidebar-head">Students</div>
         <div id="subSidebarList"></div>
       </div>
-      <!-- viewer: spectrum + comparison -->
       <div class="sub-viewer" id="subViewer">
         <div class="sub-viewer-empty" id="subViewerEmpty">Select a student to view their mapping</div>
       </div>
@@ -431,9 +424,7 @@
 
 <script>
 // ── CONFIG ────────────────────────────────────────────────────
-// Teacher: after deploying your Apps Script web app, paste the URL here.
-// Students will see it automatically when the file is re-published to GitHub.
-const SCRIPT_URL        = 'https://script.google.com/a/macros/nid.edu/s/AKfycbz191wM4uDNG-QTaKkfS4e8AvzDQ1SqG7D72evhhWdFSBT73-pc04F3AfJf9fl3w2QL/exec';
+const SCRIPT_URL        = 'https://script.google.com/macros/s/AKfycbz191wM4uDNG-QTaKkfS4e8AvzDQ1SqG7D72evhhWdFSBT73-pc04F3AfJf9fl3w2QL/exec';
 const FRAMEWORK_VERSION = 'v1';
 
 const ELEMENTS = [
@@ -451,26 +442,21 @@ let draftRationale = {};
 
 // ── RADAR SVG ─────────────────────────────────────────────────
 function radarSVG(vals, size) {
-  const pad = 18; // extra viewBox margin so top/edge labels aren't clipped
+  const pad = 18;
   const cx = size / 2, cy = size / 2;
-  const r  = size * 0.33; // slightly smaller so labels have breathing room
-  // vertices: Space=top, Exp=upper-right, Play=lower-right, World=lower-left, Narr=upper-left
+  const r  = size * 0.33;
   const angles = [-90, -18, 54, 126, 198].map(d => d * Math.PI / 180);
-  // Short 2-char labels for clarity
   const shortLabels = ['SP','EX','PL','WO','NA'];
 
-  // Grid rings
   const rings = [1,2,3,4,5].map(ring => {
     const pts = angles.map(a => `${cx + r*(ring/5)*Math.cos(a)},${cy + r*(ring/5)*Math.sin(a)}`).join(' ');
     return `<polygon points="${pts}" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>`;
   }).join('');
 
-  // Axis lines
   const axes = angles.map(a =>
     `<line x1="${cx}" y1="${cy}" x2="${cx + r*Math.cos(a)}" y2="${cy + r*Math.sin(a)}" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>`
   ).join('');
 
-  // Value polygon
   const vPts = ELEMENTS.map((el, i) => {
     const v = (vals[el.key] || 0) / 5;
     return `${cx + r*v*Math.cos(angles[i])},${cy + r*v*Math.sin(angles[i])}`;
@@ -479,7 +465,6 @@ function radarSVG(vals, size) {
   const total = Object.values(vals).reduce((a,b)=>a+b,0);
   const fillColor = total >= 20 ? '#1E7A58' : total >= 12 ? '#1565C0' : '#5535A8';
 
-  // Colored vertex dots
   const dots = ELEMENTS.map((el, i) => {
     const v = vals[el.key] || 0;
     if (v === 0) return '';
@@ -489,7 +474,6 @@ function radarSVG(vals, size) {
     return `<circle cx="${x}" cy="${y}" r="5" fill="${el.color}" stroke="white" stroke-width="1.5"/>`;
   }).join('');
 
-  // Vertex labels — no background, larger font, white stroke for contrast
   const vtxLabels = ELEMENTS.map((el, i) => {
     const dist = r + 16;
     const lx = cx + dist * Math.cos(angles[i]);
@@ -500,7 +484,6 @@ function radarSVG(vals, size) {
         font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">${lbl}</text>`;
   }).join('');
 
-  // Use padded viewBox so labels at the top/edges are never clipped
   return `<svg width="${size}" height="${size}" viewBox="${-pad} ${-pad} ${size+2*pad} ${size+2*pad}">
     ${rings}${axes}
     <polygon points="${vPts}" fill="${fillColor}" fill-opacity="0.14" stroke="${fillColor}" stroke-width="2.5" stroke-linejoin="round"/>
@@ -516,7 +499,6 @@ function init() {
 
   document.getElementById('nameInput').addEventListener('keydown', e => { if (e.key === 'Enter') addGame(); });
 
-  // Example games
   [
     { name:'Tetris',
       vals:{space:3,exp:3,play:5,world:0,narr:0},
@@ -611,7 +593,6 @@ function setInputs(vals, rat) {
     const inp = document.querySelector(`#track-${el.key} input`);
     if (inp) inp.value = v;
     const r = rat && rat[el.key];
-    // handle both string and legacy {desc,interp,eval} object
     const txt = (r && typeof r === 'object') ? [r.desc,r.interp,r.eval].filter(Boolean).join(' ') : (r || '');
     const ta = document.getElementById('rationale-'+el.key);
     if (ta) ta.value = txt;
@@ -678,8 +659,7 @@ function clearAll() {
   renderAll();
 }
 
-// ── ZOOM VIEW (ch10) ─────────────────────────────────────────
-// Pool used by openZoom — set to games[] in live view, or submission games[] in viewer
+// ── ZOOM VIEW ─────────────────────────────────────────────────
 let _zoomPool = [];
 
 function openZoom(poolIdx) {
@@ -735,7 +715,6 @@ async function submitWork() {
   if (!studentName) { alert('Please enter your name before submitting.'); document.getElementById('studentName').focus(); return; }
   if (!games.length) { alert('Add at least one game before submitting.'); return; }
 
-  // Auto-extract batch from "FirstName_LastName_Batch" format
   const parts = studentName.split('_');
   const batch = parts.length >= 3 ? parts[parts.length - 1] : '';
 
@@ -755,26 +734,22 @@ async function submitWork() {
   if (idx >= 0) stored[idx] = record; else stored.push(record);
   localStorage.setItem('spectrum_submissions', JSON.stringify(stored));
 
-  // Send to server if the URL has been configured
-  if (SCRIPT_URL && SCRIPT_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
-    const btn  = document.querySelector('.btn-teal');
-    const orig = btn.textContent;
-    btn.textContent = 'Submitting…'; btn.disabled = true;
-    try {
-      await fetch(SCRIPT_URL, {
-        method:  'POST',
-        mode:    'no-cors',   // Apps Script redirect; response unreadable but data arrives
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(record)
-      });
-      btn.textContent = '✓ Submitted!';
-      setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 2500);
-    } catch (err) {
-      btn.textContent = orig; btn.disabled = false;
-      alert(`Saved locally, but server connection failed.\nTry again or contact your instructor.\n\n(${err.message})`);
-    }
-  } else {
-    alert(`Submitted! ${studentName}'s mapping has been saved.`);
+  // Send to server
+  const btn  = document.querySelector('.btn-teal');
+  const orig = btn.textContent;
+  btn.textContent = 'Submitting…'; btn.disabled = true;
+  try {
+    await fetch(SCRIPT_URL, {
+      method:  'POST',
+      mode:    'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(record)
+    });
+    btn.textContent = '✓ Submitted!';
+    setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 2500);
+  } catch (err) {
+    btn.textContent = orig; btn.disabled = false;
+    alert(`Saved locally, but server connection failed.\nTry again or contact your instructor.\n\n(${err.message})`);
   }
 }
 
@@ -803,9 +778,6 @@ function renderSidebarList() {
 
 async function loadFromServer() {
   const btn = document.getElementById('loadServerBtn');
-  if (!SCRIPT_URL || SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
-    alert('Server URL not configured yet.\nAsk your instructor for the correct link.'); return;
-  }
   btn.textContent = 'Loading…'; btn.disabled = true;
   try {
     const res  = await fetch(SCRIPT_URL);
@@ -840,7 +812,6 @@ function openSubmissions() {
 }
 
 function showSubmission(idx) {
-  // Update sidebar active state
   if (_subSelected >= 0) {
     const prev = document.getElementById(`sub-item-${_subSelected}`);
     if (prev) prev.classList.remove('active');
@@ -852,11 +823,9 @@ function showSubmission(idx) {
   const s = _submissions[idx];
   const viewer = document.getElementById('subViewer');
 
-  // ── Spectrum grid ──
   const sortedGames = [...s.games]
     .sort((a,b) => Object.values(a.values).reduce((x,y)=>x+y,0) - Object.values(b.values).reduce((x,y)=>x+y,0));
 
-  // Set zoom pool so the ⤢ button in submission cards opens the right game
   _zoomPool = sortedGames;
 
   const spectrumCols = sortedGames.map((g, poolIdx) => {
@@ -881,7 +850,6 @@ function showSubmission(idx) {
     </div>`;
   }).join('');
 
-  // ── Comparison table ──
   const sortedForTable = [...s.games]
     .sort((a,b) => Object.values(b.values).reduce((x,y)=>x+y,0) - Object.values(a.values).reduce((x,y)=>x+y,0));
 
@@ -913,7 +881,6 @@ function showSubmission(idx) {
   ).join('');
 
   viewer.innerHTML = `
-    <!-- Section: Spectrum -->
     <div>
       <div style="border-bottom:3px solid var(--txt-d);padding-bottom:10px;margin-bottom:16px;display:flex;align-items:baseline;justify-content:space-between">
         <span style="font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:700">The Spectrum</span>
@@ -928,8 +895,6 @@ function showSubmission(idx) {
         </div>
       </div>
     </div>
-
-    <!-- Section: Comparison -->
     <div>
       <div class="sv-comp-head">
         <div class="sv-comp-title">Game Levels Comparisons</div>
@@ -1000,7 +965,6 @@ function renderSpectrum() {
   empty.style.display = 'none';
   wrapper.style.display = 'flex';
 
-  // Abstract (low score) at top, Narrative (high score) at bottom
   const sorted = [...games].map((g,i)=>({...g,idx:i}))
     .sort((a,b)=>Object.values(a.values).reduce((x,y)=>x+y,0)-Object.values(b.values).reduce((x,y)=>x+y,0));
 
@@ -1013,7 +977,6 @@ function renderSpectrum() {
     const scoreColor = total >= 20 ? '#1E7A58' : total >= 12 ? '#1565C0' : '#5535A8';
     const rat        = g.rationale || {};
 
-    // Right column: full analysis text per element, 13px
     const rightRows = ELEMENTS.map(el => {
       const r   = rat[el.key] || '';
       const txt = (typeof r === 'object') ? [r.desc,r.interp,r.eval].filter(Boolean).join(' ') : r;
