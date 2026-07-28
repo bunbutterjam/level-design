@@ -302,6 +302,7 @@
         <div class="key-item" onclick="openElementInfo('narr')" title="Open Narrative lens"><div class="key-dot" style="background:var(--narr)"></div><span style="color:var(--narr)">NARRATIVE</span></div>
       </div>
     </div>
+    <div class="panel-label" style="margin-bottom:8px;font-size:1.1em;">Games Added</div>
     <div class="spectrum-outer" id="spectrumWrap">
       <div class="spectrum-empty" id="emptyMsg">Add games on the left to begin mapping the spectrum.</div>
       <div class="spectrum-with-axis" id="spectrumWithAxis" style="display:none">
@@ -881,7 +882,7 @@ function showSubmission(idx) {
   viewer.innerHTML = `
     <div>
       <div style="border-bottom:3px solid var(--txt-d);padding-bottom:10px;margin-bottom:16px;display:flex;align-items:baseline;justify-content:space-between">
-        <span style="font-weight:800;letter-spacing:-0.3px;font-size:24px;font-weight:700">The Spectrum</span>
+        <span style="font-weight:800;letter-spacing:-0.3px;font-size:24px;font-weight:700">Games Added</span>
         <span style="font-size:11px;color:var(--mute-d);font-style:italic">${s.studentName}</span>
       </div>
       <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px">${elementKeyHTML}</div>
