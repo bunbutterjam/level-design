@@ -7,9 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --card:   #FFFFFF;
-    --bg:     #EEEADB;
-    --header: #E6E2D2;
+    --card:   #FFFDF4;
+    --bg:     #F2EFD8;
+    --header: #EAE7CC;
     --border: rgba(0,0,0,0.09);
     --mute:   #9C9878;
     --mute-d: #6B6850;
@@ -26,8 +26,8 @@
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--txt-d); min-height: 100vh; }
 
   /* ── HEADER ── */
-  .header { padding: 22px 32px 18px; background: var(--header); border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
-  .header h1 { font-size: 28px; font-weight: 700; color: var(--txt-d); letter-spacing: -0.5px; }
+  .header { padding: 22px 32px 18px; background: var(--header); border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 16px; }
+  .header h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 700; color: var(--txt-d); letter-spacing: -0.5px; }
   .header p  { font-size: 13px; color: var(--mute-d); }
 
   /* ── LAYOUT ── */
@@ -68,9 +68,7 @@
 
   .slider-track { position: relative; height: 7px; background: rgba(0,0,0,0.1); border-radius: 4px; cursor: pointer; margin-top: 2px; }
   .slider-fill  { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; transition: width 0.1s; }
-  input[type=range] { position: absolute; inset: -7px 0; cursor: pointer; width: 100%; -webkit-appearance: none; appearance: none; background: transparent; }
-  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #5535A8; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.2); cursor: pointer; }
-  input[type=range]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: #5535A8; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.2); cursor: pointer; }
+  input[type=range] { position: absolute; inset: -7px 0; opacity: 0; cursor: pointer; width: 100%; }
 
   /* ── THREE-FIELD RATIONALE ── */
   .rat-block { display: flex; flex-direction: column; gap: 5px; }
@@ -141,14 +139,12 @@
 
   .game-col {
     display: grid; grid-template-columns: 40% 60%;
-    cursor: pointer;
-    transition: background 0.15s, box-shadow 0.2s; animation: fadeIn 0.25s ease; position: relative;
-    background: #F9F7FD; box-shadow: 0 2px 8px rgba(85,53,168,0.1);
-    border-radius: 10px; margin: 6px 8px; border: 1px solid rgba(85,53,168,0.18);
+    border-bottom: 1px solid rgba(0,0,0,0.07); cursor: pointer;
+    transition: background 0.15s; animation: fadeIn 0.25s ease; position: relative;
   }
   .game-col:last-child { border-bottom: none; }
-  .game-col:hover { background: #F0EBFA; box-shadow: 0 4px 14px rgba(85,53,168,0.16); border-color: rgba(85,53,168,0.12); }
-  .game-col.sel   { background: #E8DEF8; box-shadow: 0 4px 14px rgba(85,53,168,0.22); border-color: rgba(85,53,168,0.25); }
+  .game-col:hover { background: rgba(0,0,0,0.02); }
+  .game-col.sel   { background: rgba(85,53,168,0.06); }
 
   @keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
 
@@ -156,15 +152,15 @@
   .col-left { display: flex; flex-direction: column; align-items: center; padding: 10px 10px 8px; border-right: 1px solid rgba(0,0,0,0.07); }
   /* Pentagon SVG scales to fill the column */
   .col-left svg { width: 60%; height: auto; }
-  .col-name  { font-size: 20px; font-weight: 800; color: var(--txt-d); text-align: center; margin-bottom: 4px; line-height: 1.2; }
+  .col-name  { font-size: 20px; font-weight: 800; color: var(--txt-d); text-align: center; font-family: 'Playfair Display', Georgia, serif; margin-bottom: 4px; line-height: 1.2; }
   .col-sub   { font-size: 16px; color: var(--mute-d); text-align: center; font-style: italic; margin-bottom: 10px; line-height: 1.4; }
-  .col-score { font-size: 20px; font-weight: 800; margin-top: 0; line-height: 1.2; }
+  .col-score { font-size: 20px; font-weight: 800; font-family: 'Playfair Display', Georgia, serif; margin-top: 0; line-height: 1.2; }
 
   /* Right sub-column: analysis text */
   .col-right { padding: 10px 20px; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
   .col-rat-row { display: flex; gap: 10px; align-items: flex-start; }
   .col-rat-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
-  .col-rat-text { font-size: 13px; color: var(--mute-d); font-style: italic; line-height: 1.5; }
+  .col-rat-text { font-size: 18px; color: var(--mute-d); font-style: italic; line-height: 1.5; }
 
   /* zoom button on game card */
   .col-zoom-btn {
@@ -189,7 +185,7 @@
   /* ── COMPARISON TABLE ── */
   .comp-wrap { display: flex; flex-direction: column; gap: 0; }
   .comp-section-head { border-bottom: 4px solid var(--txt-d); padding-bottom: 12px; margin-bottom: 0; }
-  .comp-section-title { font-size: 30px; font-weight: 700; color: var(--txt-d); }
+  .comp-section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 30px; font-weight: 700; color: var(--txt-d); }
   .comp-section-sub   { font-size: 13px; color: var(--mute-d); margin-top: 5px; font-style: italic; }
 
   .comp-table { background: var(--card); border-radius: 0 0 14px 14px; border: 1px solid var(--border); border-top: none; overflow: hidden; }
@@ -273,9 +269,6 @@
   .zoom-score-row { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
   .zoom-score-bar { height: 8px; border-radius: 4px; min-width: 4px; transition: width 0.3s; }
 
-  /* ── FOOTER ── */
-  .footer { padding: 14px 32px 14px 392px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--mute-d); background: var(--header); border-top: 1px solid var(--border); letter-spacing: 0.5px; }
-
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
@@ -285,7 +278,7 @@
 
 <div class="header">
   <h1>Level Elements Mapping Framework</h1>
-  <p>Add games, rate each element from 0–5 with rationale, then submit your mapping.</p>
+  <p>Level Design &amp; Environmental Storytelling — Studio Exercise</p>
 </div>
 
 <div class="layout">
@@ -337,6 +330,12 @@
 
   <!-- ── RIGHT PANEL ── -->
   <div class="canvas-wrap">
+
+    <div>
+      <div class="section-head">
+        <div class="section-title">The Spectrum</div>
+      </div>
+    </div>
 
     <div class="element-key">
       <div class="key-item"><div class="key-dot" style="background:var(--space)"></div><span style="color:var(--space)">SPACE</span></div>
@@ -423,11 +422,6 @@
   </div>
 </div>
 
-<div class="footer">
-  <span>Developed for Level Design course at NID Bengaluru</span>
-  <span>© Swapnesh Samaiya</span>
-</div>
-
 <script>
 // ── CONFIG ────────────────────────────────────────────────────
 const SCRIPT_URL        = 'https://script.google.com/macros/s/AKfycbzdAXybwxZS6S9mV1rKNPtY6gONhK5DPMdcboIEwQPP3DxrSrFgZy2ZmA98yXIy7V8v8Q/exec';
@@ -445,6 +439,41 @@ let games        = [];
 let selected     = null;
 let draft        = {};
 let draftRationale = {};
+
+// ── SESSION PERSISTENCE ───────────────────────────────────────
+const SESSION_KEY = 'lemf_session';
+
+function saveSession() {
+  try {
+    localStorage.setItem(SESSION_KEY, JSON.stringify({
+      studentName: document.getElementById('studentName').value,
+      games,
+      selected
+    }));
+  } catch(e) {}
+}
+
+function loadSession() {
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    if (!raw) return false;
+    const s = JSON.parse(raw);
+    if (s.studentName) document.getElementById('studentName').value = s.studentName;
+    if (s.games && s.games.length) {
+      games = s.games;
+      if (s.selected !== null && s.selected < games.length) {
+        selected = s.selected;
+        draft = {...games[selected].values};
+        draftRationale = {...(games[selected].rationale || {})};
+        setInputs(draft, draftRationale);
+        document.getElementById('nameInput').value = games[selected].name;
+        document.getElementById('addBtn').textContent = 'Done';
+      }
+      return true;
+    }
+  } catch(e) {}
+  return false;
+}
 
 // ── RADAR SVG ─────────────────────────────────────────────────
 function radarSVG(vals, size) {
@@ -504,8 +533,10 @@ function init() {
   buildSliders();
 
   document.getElementById('nameInput').addEventListener('keydown', e => { if (e.key === 'Enter') addGame(); });
+  document.getElementById('studentName').addEventListener('input', saveSession);
 
-  [
+  // Restore previous session; only load example games on first visit
+  if (!loadSession()) [
     { name:'Tetris',
       vals:{space:3,exp:3,play:5,world:0,narr:0},
       rat:{
@@ -566,7 +597,7 @@ function buildSliders() {
         <input type="range" min="0" max="5" step="1" value="0" oninput="onSlider('${el.key}',this.value)">
       </div>
       <textarea id="rationale-${el.key}" class="rationale-input" rows="2"
-        placeholder="Description: what you see/hear/feel&#10;Interpretation: what it means for the level&#10;Evaluation: why this score"
+        placeholder="Description: what you see/hear/feel. Interpretation: what it means for the level. Evaluation: why this score."
         oninput="onRationale('${el.key}',this.value)"></textarea>
     `;
     wrap.appendChild(row);
@@ -583,11 +614,13 @@ function onSlider(key, val) {
     games[selected].sub    = makeSubtitle(draft);
     renderAll();
   }
+  saveSession();
 }
 
 function onRationale(key, val) {
   draftRationale[key] = val;
   if (selected !== null) games[selected].rationale = {...draftRationale};
+  saveSession();
 }
 
 function setInputs(vals, rat) {
@@ -621,6 +654,7 @@ function addGame() {
   games.push({ name, values:{...draft}, rationale:{...draftRationale}, sub:makeSubtitle(draft) });
   inp.value = ''; resetDraft(); setInputs(draft, draftRationale);
   renderAll();
+  saveSession();
 }
 
 function makeSubtitle(vals) {
@@ -637,6 +671,7 @@ function deleteGame(i) {
   if (selected === i) { selected = null; resetDraft(); setInputs(draft, draftRationale); }
   else if (selected > i) selected--;
   renderAll();
+  saveSession();
 }
 
 function selectGame(i) {
@@ -653,6 +688,7 @@ function selectGame(i) {
     document.getElementById('addBtn').textContent = 'Done';
   }
   renderAll();
+  saveSession();
 }
 
 function clearAll() {
@@ -662,6 +698,7 @@ function clearAll() {
   resetDraft(); setInputs(draft, draftRationale);
   document.getElementById('nameInput').value = '';
   document.getElementById('addBtn').textContent = 'Add';
+  localStorage.removeItem(SESSION_KEY);
   renderAll();
 }
 
